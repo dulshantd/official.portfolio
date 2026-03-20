@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Dulshan - ICT Undergraduate | Networking & Cloud Enthusiast">
     <title>Dulshan | Tech Portfolio</title>
     <style>
         :root {
@@ -18,6 +19,7 @@
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Scanline effect */
@@ -55,12 +57,21 @@
             margin-bottom: 20px;
         }
 
+        /* Typing Effect Container */
+        .typing-container {
+            display: inline-block;
+        }
+
         h1 {
             color: var(--hacker-red);
             font-size: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 5px;
             margin: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid var(--terminal-green);
+            animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
         }
 
         .subtitle {
@@ -91,17 +102,26 @@
             gap: 25px;
         }
 
+        /* POPUP ANIMATION CSS */
         .project-card {
             background: #111;
             border: 1px solid #333;
             padding: 15px;
-            transition: 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s ease-out;
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+        }
+
+        .project-card.appear {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .project-card:hover {
             border-color: var(--hacker-red);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 0, 60, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 0, 60, 0.4);
+            z-index: 10;
         }
 
         .project-img {
@@ -137,6 +157,17 @@
         }
 
         .red-text { color: var(--hacker-red); }
+
+        /* KEYFRAMES */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--terminal-green); }
+        }
     </style>
 </head>
 <body>
@@ -144,12 +175,14 @@
 <div class="container">
     <header>
         <img src="images/profile.jpg" alt="Dulshan" class="profile-img">
-        <h1>Hello, I'm <span class="red-text">Dulshan</span></h1>
+        <div class="typing-container">
+            <h1>Hello, I'm <span class="red-text">Dulshan</span></h1>
+        </div>
         <p class="subtitle">ICT Undergraduate | Networking & Cloud Enthusiast</p>
     </header>
 
     <section id="about">
-        <h2>AboutMe</h2>
+        <h2>> About_Me</h2>
         <div class="about-text">
             <p>I am an ICT Undergraduate at the South Eastern University of Sri Lanka with a deep interest in networking, cloud computing, and systems architecture.</p>
             <p>I enjoy exploring low-level programming in <span class="red-text">C</span> and building efficient, scalable applications in <span class="red-text">Java</span>. My goal is to bridge the gap between complex infrastructure and user-centric software solutions.</p>
@@ -157,7 +190,7 @@
     </section>
 
     <section id="projects">
-        <h2>Projects</h2>
+        <h2>> Featured_Projects</h2>
         <div class="project-grid">
             <div class="project-card">
                 <img src="images/project1.jpg" alt="Bank System" class="project-img">
@@ -178,18 +211,21 @@
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
+        <h2>> Establish_Connection</h2>
         <div class="contact-info">
-            <div class="contact-item">EMAIL: dulshandissanayaka480@gmail.com</div>
+            <div class="contact-item">EMAIL: <a href="mailto:dulshandissanayaka480@gmail.com">dulshandissanayaka480@gmail.com</a></div>
             <div class="contact-item">PHONE: (+94) 76-3565058</div>
             <div class="contact-item">LINKEDIN: <a href="https://linkedin.com/in/dulshan-dissanayaka" target="_blank">dulshan-dissanayaka</a></div>
             <div class="contact-item">GITHUB: <a href="https://github.com/dulshantd" target="_blank">dulshantd</a></div>
         </div>
     </section>
 </div>
+
 <script>
+    // Intersection Observer for the Pop-up effect
     const observerOptions = {
-        threshold: 0.2
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -200,29 +236,9 @@
         });
     }, observerOptions);
 
-    // Apply observer to all project cards
     document.querySelectorAll('.project-card').forEach(card => {
         observer.observe(card);
     });
 </script>
 </body>
-
-    <script>
-    const observerOptions = {
-        threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-            }
-        });
-    }, observerOptions);
-
-    // Apply observer to all project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-        observer.observe(card);
-    });
-</script>
 </html>
