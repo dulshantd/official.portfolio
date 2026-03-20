@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dulshan Portfolio</title>
+    <title>Dulshan | Tech Portfolio</title>
     <style>
-        /* This IS your CSS - it lives inside the HTML file */
         body {
             background-color: #0a0a0a;
             color: #00ff41;
@@ -22,6 +21,7 @@
             border-radius: 50%;
             border: 2px solid #ff003c;
             object-fit: cover;
+            background: #111;
         }
 
         .project-grid {
@@ -35,6 +35,14 @@
             background: #111;
             border: 1px solid #333;
             padding: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            border-color: #ff003c;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+            transform: translateY(-5px);
         }
 
         .card img {
@@ -44,16 +52,43 @@
             border: 1px solid #444;
         }
 
-        h1, h3 { color: #ff003c; }
+        h1, h3 { color: #ff003c; text-transform: uppercase; }
+
+        /* --- MODAL POPUP STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10000; 
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content {
+            background: #0a0a0a;
+            border: 2px solid #ff003c;
+            padding: 30px; width: 90%; max-width: 500px;
+            position: relative; box-shadow: 0 0 30px #ff003c;
+        }
+
+        .close-btn { 
+            position: absolute; top: 10px; right: 20px; 
+            color: #ff003c; font-size: 35px; cursor: pointer; 
+        }
+
+        #modal-img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 15px; }
         
+        /* FOOTER BUTTONS */
         .btn {
             display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
+            width: 200px;
+            margin: 8px;
+            padding: 12px 0;
             border: 1px solid #00ff41;
             color: #00ff41;
             text-decoration: none;
             font-weight: bold;
+            transition: 0.3s;
         }
         .btn:hover { background: #00ff41; color: #000; }
     </style>
@@ -62,35 +97,69 @@
 
 <div class="container">
     <header>
-        <img src="images/profile.jpg" class="profile-pic" alt="Dulshan" onerror="this.src='https://via.placeholder.com/150?text=Profile+Image+Missing'">
-        <h1>Hello , I'M Dulshan Dissanayaka</h1>
+        <img src="images/profile.jpg" class="profile-pic" alt="Dulshan" onerror="this.src='https://via.placeholder.com/150'">
+        <h1>HELLO, I'M DULSHAN DISSANAYAKA</h1>
         <p>ICT Undergraduate | SEUSL | Networking & Cloud</p>
     </header>
 
     <div class="project-grid">
-        <div class="card">
-            <img src="images/project1.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Project1.jpg+Missing'">
+        <div class="card" onclick="openModal('C Projects', 'C-Language secure systems, featuring database theory and low-level programming.', 'images/project1.jpg')">
+            <img src="images/project1.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=C+Projects'">
             <h3>C language Projects</h3>
-            <p>C-Language Secure System</p>
+            <p>Click to view system logs...</p>
         </div>
-        <div class="card">
-            <img src="images/project2.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Project2.jpg+Missing'">
+        
+        <div class="card" onclick="openModal('Java Projects', 'OOP driven applications focusing on logic, GUI design, and database integration.', 'images/project2.jpg')">
+            <img src="images/project2.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Java+Projects'">
             <h3>Java Projects</h3>
-            <p>OOP & Database Projects</p>
+            <p>Click to view details...</p>
         </div>
-        <div class="card">
-            <img src="images/project3.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Project3.jpg+Missing'">
+        
+        <div class="card" onclick="openModal('Networking', 'Labs involving Cisco Packet Tracer, IPv4 subnetting, and routing protocols.', 'images/project3.jpg')">
+            <img src="images/project3.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Networking'">
             <h3>Networking Learning</h3>
-            <p>Cisco Packet Tracer / IPv4 / Routing</p>
+            <p>Click to view lab data...</p>
         </div>
     </div>
+
+    <footer>
+        <h2 style="color:#ff003c; margin-top: 40px;">> CONTACT_DETAILS</h2>
+        <a href="https://github.com/dulshantd" class="btn" target="_blank">GITHUB</a><br>
+        <a href="https://linkedin.com/in/dulshan-dissanayaka" class="btn" target="_blank">LINKEDIN</a><br>
+        <a href="mailto:dulshandissanayaka480@gmail.com" class="btn">EMAIL</a><br>
+        <a href="https://wa.me/94763565058" class="btn" target="_blank">WHATSAPP</a>
+    </footer>
 </div>
-    <footer style="margin-top: 50px;">
-    <a href="https://github.com/dulshantd" class="btn" target="_blank">GITHUB</a><br>
-    <a href="https://linkedin.com/in/dulshan-dissanayaka" class="btn" target="_blank">LINKEDIN</a><br>
-    <a href="mailto:dulshandissanayaka480@gmail.com" class="btn">EMAIL</a><br>
-    <a href="https://wa.me/763565058" class="btn">WHATSAPP</a><br>
-</footer>
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img id="modal-img" src="" alt="Project">
+        <h2 id="modal-title" style="color: #ff003c;"></h2>
+        <p id="modal-desc" style="color: #ccc;"></p>
+    </div>
+</div>
+
+<script>
+    function openModal(title, desc, img) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-desc').innerText = desc;
+        document.getElementById('modal-img').src = img;
+        document.getElementById('projectModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('projectModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside the box
+    window.onclick = function(event) {
+        let modal = document.getElementById('projectModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
