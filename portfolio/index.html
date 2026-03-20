@@ -19,6 +19,7 @@
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Scanline effect */
@@ -46,19 +47,54 @@
             border-bottom: 1px solid var(--hacker-red);
         }
 
-        .profile-img {
+        /* GLITCH CONTAINER SETUP */
+        .glitch-container {
+            position: relative;
+            display: inline-block;
             width: 180px; height: 180px;
+            margin-bottom: 20px;
             border-radius: 50%;
+            overflow: hidden;
             border: 3px solid var(--hacker-red);
             box-shadow: 0 0 20px var(--hacker-red);
-            object-fit: cover;
-            margin-bottom: 20px;
         }
 
-        h1 { color: var(--hacker-red); text-transform: uppercase; letter-spacing: 5px; }
+        .profile-img, .glitch-layer {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .glitch-layer { opacity: 0; }
+
+        .glitch-container:hover .glitch-layer { opacity: 1; }
+
+        .glitch-container:hover .glitch-layer-1 {
+            animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
+            filter: hue-rotate(90deg);
+        }
+
+        .glitch-container:hover .glitch-layer-2 {
+            animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
+            filter: hue-rotate(-90deg);
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(80% 0 0 0); transform: translate(-5px); }
+            100% { clip-path: inset(0 0 80% 0); transform: translate(5px); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(0 0 80% 0); transform: translate(5px); }
+            100% { clip-path: inset(80% 0 0 0); transform: translate(-5px); }
+        }
+
+        h1 { color: var(--hacker-red); text-transform: uppercase; letter-spacing: 5px; position: relative; z-index: 10;}
 
         section { margin: 60px 0; }
-        h2 { color: var(--hacker-red); border-left: 5px solid var(--hacker-red); padding-left: 15px; }
+        h2 { color: var(--hacker-red); border-left: 5px solid var(--hacker-red); padding-left: 15px; text-transform: uppercase;}
 
         .project-grid {
             display: grid;
@@ -66,7 +102,6 @@
             gap: 25px;
         }
 
-        /* Card Setup */
         .project-card {
             background: #111;
             border: 1px solid #333;
@@ -82,11 +117,12 @@
         .project-card:hover {
             border-color: var(--hacker-red);
             box-shadow: 0 0 15px var(--hacker-red);
+            transform: scale(1.02);
         }
 
         .project-img { width: 100%; height: 150px; object-fit: cover; border: 1px solid #444; }
 
-        /* --- MODAL STYLES --- */
+        /* MODAL STYLES */
         .modal {
             display: none; 
             position: fixed; 
@@ -103,7 +139,7 @@
             border: 2px solid var(--hacker-red);
             padding: 30px;
             width: 80%;
-            max-width: 700px;
+            max-width: 600px;
             position: relative;
             box-shadow: 0 0 30px var(--hacker-red);
         }
@@ -118,8 +154,8 @@
 
         #modal-img {
             width: 100%;
-            max-height: 300px;
-            object-fit: contain;
+            max-height: 250px;
+            object-fit: cover;
             border-bottom: 1px solid #333;
             margin-bottom: 20px;
         }
@@ -133,36 +169,33 @@
     <header>
         <div class="glitch-container">
             <img src="profile.png" alt="Dulshan" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=Dulshan'">
-            
-            <img src="profile.png" alt="Dulshan Glitch" class="glitch-layer glitch-layer-1" aria-hidden="true">
-            <img src="profile.png" alt="Dulshan Glitch" class="glitch-layer glitch-layer-2" aria-hidden="true">
+            <img src="profile.png" class="glitch-layer glitch-layer-1" aria-hidden="true">
+            <img src="profile.png" class="glitch-layer glitch-layer-2" aria-hidden="true">
         </div>
         
         <h1>Hello, I'm <span class="red-text">Dulshan</span></h1>
         <p>ICT Undergraduate | Networking & Cloud Enthusiast</p>
     </header>
 
-    </body>
-
     <section id="projects">
         <h2>> Featured_Projects</h2>
         <div class="project-grid">
-            <div class="project-card" onclick="openModal('Bank Management System', 'Full description: A secure C-based system featuring file handling for data persistence and multi-user account management.', 'images/project1.jpg')">
-                <img src="images/project1.jpg" alt="Bank" class="project-img">
+            <div class="project-card" onclick="openModal('Bank Management System', 'A secure C-based system featuring file handling for data persistence and multi-user account management.', 'project1.jpg')">
+                <img src="project1.jpg" alt="Bank" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Bank+System'">
                 <h3 class="red-text">Bank Management System</h3>
-                <p>Click to view system details...</p>
+                <p>Click for details...</p>
             </div>
 
-            <div class="project-card" onclick="openModal('Java Applications', 'Full description: Developed various OOP-based tools including simple GUI calculators and database connectors.', 'images/project2.jpg')">
-                <img src="images/project2.jpg" alt="Java" class="project-img">
+            <div class="project-card" onclick="openModal('Java Applications', 'Developed various OOP-based tools including simple GUI calculators and database connectors.', 'project2.jpg')">
+                <img src="project2.jpg" alt="Java" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Java+App'">
                 <h3 class="red-text">Java Applications</h3>
-                <p>Click to view OOP projects...</p>
+                <p>Click for details...</p>
             </div>
 
-            <div class="project-card" onclick="openModal('Networking Learning', 'Full description: Extensive labs on Cisco Packet Tracer involving VLANs, OSPF routing, and IPv4 subnetting.', 'images/project3.jpg')">
-                <img src="images/project3.jpg" alt="Network" class="project-img">
+            <div class="project-card" onclick="openModal('Networking Learning', 'Extensive labs on Cisco Packet Tracer involving VLANs, OSPF routing, and IPv4 subnetting.', 'project3.jpg')">
+                <img src="project3.jpg" alt="Network" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Network+Labs'">
                 <h3 class="red-text">Networking Learning</h3>
-                <p>Click to view network labs...</p>
+                <p>Click for details...</p>
             </div>
         </div>
     </section>
@@ -170,7 +203,7 @@
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Project Preview">
+            <img id="modal-img" src="" alt="Preview">
             <h2 id="modal-title" class="red-text"></h2>
             <p id="modal-desc" style="color: #ccc;"></p>
         </div>
@@ -178,7 +211,6 @@
 </div>
 
 <script>
-    // 1. OPEN MODAL FUNCTION
     function openModal(title, desc, imgPath) {
         document.getElementById('modal-title').innerText = title;
         document.getElementById('modal-desc').innerText = desc;
@@ -186,20 +218,15 @@
         document.getElementById('projectModal').style.display = 'flex';
     }
 
-    // 2. CLOSE MODAL FUNCTION
     function closeModal() {
         document.getElementById('projectModal').style.display = 'none';
     }
 
-    // Close if user clicks outside the box
     window.onclick = function(event) {
         let modal = document.getElementById('projectModal');
-        if (event.target == modal) {
-            closeModal();
-        }
+        if (event.target == modal) closeModal();
     }
 
-    // 3. SCROLL ANIMATION
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -208,9 +235,7 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.project-card').forEach(card => {
-        observer.observe(card);
-    });
+    document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
 </script>
 
 </body>
