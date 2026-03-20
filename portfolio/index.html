@@ -142,56 +142,84 @@
     </section>
 
     <section id="projects">
-        <h2>Developed Projects</h2>
-        <div class="project-grid">
-            <div class="card" onclick="openModal('C Language Projects', 'A console-based Bank Management System developed in C, focused on learning file handling, data persistence, and account operations.
-
-Features / Highlights:
-
-User account creation, login, and deletion
-
-Deposit and withdrawal functionalities
-
-Transaction history tracking
-
-Balance checking and account summary
-
-Use of file handling to store user data permanently
-
-Input validation to prevent invalid operations
-
-Modular programming with functions for each feature
-
-CLI-based interface mimicking real banking operations
-
-Learning Outcomes:
-
-Understanding data structures (arrays, structs)
-
-Hands-on experience with file I/O in C
-
-Basic security concepts in user authentication
-
-Logical structuring of a console application', 'images/project1.jpg')">
-                <img src="images/project1.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=C+Projects'">
-                <h3>C Projects</h3>
-                <p>[Click to Open]</p>
-            </div>
-            
-            <div class="card" onclick="openModal('Java Core Apps', 'OOP driven tools including GUI design and database integration.', 'images/project2.jpg')">
-                <img src="images/project2.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Java+Projects'">
-                <h3>Java Apps</h3>
-                <p>[Click to Open]</p>
-            </div>
-            
-            <div class="card" onclick="openModal('Networking Labs', 'Cisco Packet Tracer labs focusing on OSPF and IPv4 Subnetting.', 'images/project3.jpg')">
-                <img src="images/project3.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Networking'">
-                <h3>Networking</h3>
-                <p>[Click to Open]</p>
-            </div>
+    <h2>Developed Projects</h2>
+    <div class="project-grid">
+        <div class="card" onclick="openModal(
+            'Bank Management System', 
+            `<p><strong>Features / Highlights:</strong></p>
+            <ul>
+                <li>User account creation, login, and deletion</li>
+                <li>Deposit and withdrawal functionalities</li>
+                <li>Transaction history tracking</li>
+                <li>Balance checking and account summary</li>
+                <li>Use of <span class='red-text'>file handling</span> to store user data permanently</li>
+                <li>Input validation to prevent invalid operations</li>
+                <li>Modular programming with functions for each feature</li>
+                <li>CLI-based interface mimicking real banking operations</li>
+            </ul>
+            <p><strong>Learning Outcomes:</strong></p>
+            <ul>
+                <li>Understanding data structures (arrays, structs)</li>
+                <li>Hands-on experience with file I/O in C</li>
+                <li>Basic security concepts in user authentication</li>
+                <li>Logical structuring of a console application</li>
+            </ul>`,
+            'images/project1.jpg')">
+            <img src="images/project1.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=C+Projects'">
+            <h3>C Projects</h3>
+            <p>[Click to Open]</p>
         </div>
-    </section>
-
+        
+        <div class="card" onclick="openModal(
+            'Java Applications', 
+            `<p><strong>Features / Highlights:</strong></p>
+            <ul>
+                <li>Multiple small applications like Calculator, Tic-Tac-Toe, Student Information Manager, To-Do List</li>
+                <li>Implementation of <span class='red-text'>classes, objects, inheritance, and polymorphism</span></li>
+                <li>Use of Java Collections Framework for data storage</li>
+                <li>Input validation and exception handling</li>
+                <li>User-friendly console and GUI components</li>
+                <li>Focus on code reusability and modular design</li>
+            </ul>
+            <p><strong>Learning Outcomes:</strong></p>
+            <ul>
+                <li>Strengthened OOP understanding</li>
+                <li>Ability to structure multiple interrelated classes</li>
+                <li>Exception handling and debugging practice</li>
+                <li>Problem-solving using Java programming</li>
+            </ul>`,
+            'images/project2.jpg')">
+            <img src="images/project2.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Java+Projects'">
+            <h3>Java Apps</h3>
+            <p>[Click to Open]</p>
+        </div>
+        
+        <div class="card" onclick="openModal(
+            'Networking Labs', 
+            `<p><strong>Features / Highlights:</strong></p>
+            <ul>
+                <li>IP Addressing and Subnetting simulations</li>
+                <li>Basic routing protocol exercises (RIP, static routes)</li>
+                <li>Network topology diagrams and packet flow illustrations</li>
+                <li>Simulation of client-server interactions</li>
+                <li>Hands-on practice with virtual network environments</li>
+                <li>Understanding of LAN, WAN, and network layers</li>
+                <li>Packet analysis and troubleshooting exercises</li>
+            </ul>
+            <p><strong>Learning Outcomes:</strong></p>
+            <ul>
+                <li>Strong foundation in network fundamentals</li>
+                <li>Practical understanding of IP subnetting</li>
+                <li>Familiarity with routing concepts and network configuration</li>
+                <li>Ability to design and analyse simple network topologies</li>
+            </ul>`,
+            'images/project3.jpg')">
+            <img src="images/project3.jpg" onerror="this.src='https://via.placeholder.com/300x160?text=Networking'">
+            <h3>Networking</h3>
+            <p>[Click to Open]</p>
+        </div>
+    </div>
+</section>
     <footer>
         <h2 style="margin-top: 40px;">Reach Me</h2>
         <a href="https://github.com/dulshantd" class="btn" target="_blank">GITHUB</a><br>
