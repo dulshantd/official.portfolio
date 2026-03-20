@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* Scanline effect */
+        /* CRT Scanline Effect */
         body::before {
             content: " ";
             display: block;
@@ -35,11 +35,7 @@
             pointer-events: none;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
         header {
             text-align: center;
@@ -47,7 +43,7 @@
             border-bottom: 1px solid var(--hacker-red);
         }
 
-        /* GLITCH CONTAINER SETUP */
+        /* GLITCH CONTAINER */
         .glitch-container {
             position: relative;
             display: inline-block;
@@ -57,6 +53,7 @@
             overflow: hidden;
             border: 3px solid var(--hacker-red);
             box-shadow: 0 0 20px var(--hacker-red);
+            background: #111;
         }
 
         .profile-img, .glitch-layer {
@@ -67,15 +64,13 @@
             top: 0; left: 0;
         }
 
-        .glitch-layer { opacity: 0; }
-
+        .glitch-layer { opacity: 0; pointer-events: none; }
         .glitch-container:hover .glitch-layer { opacity: 1; }
 
         .glitch-container:hover .glitch-layer-1 {
             animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
             filter: hue-rotate(90deg);
         }
-
         .glitch-container:hover .glitch-layer-2 {
             animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
             filter: hue-rotate(-90deg);
@@ -85,21 +80,18 @@
             0% { clip-path: inset(80% 0 0 0); transform: translate(-5px); }
             100% { clip-path: inset(0 0 80% 0); transform: translate(5px); }
         }
-
         @keyframes glitch-anim-2 {
             0% { clip-path: inset(0 0 80% 0); transform: translate(5px); }
             100% { clip-path: inset(80% 0 0 0); transform: translate(-5px); }
         }
 
-        h1 { color: var(--hacker-red); text-transform: uppercase; letter-spacing: 5px; position: relative; z-index: 10;}
-
-        section { margin: 60px 0; }
-        h2 { color: var(--hacker-red); border-left: 5px solid var(--hacker-red); padding-left: 15px; text-transform: uppercase;}
+        h1 { color: var(--hacker-red); text-transform: uppercase; letter-spacing: 5px; }
 
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
+            margin-top: 40px;
         }
 
         .project-card {
@@ -117,50 +109,39 @@
         .project-card:hover {
             border-color: var(--hacker-red);
             box-shadow: 0 0 15px var(--hacker-red);
-            transform: scale(1.02);
         }
 
-        .project-img { width: 100%; height: 150px; object-fit: cover; border: 1px solid #444; }
+        .project-img { width: 100%; height: 180px; object-fit: cover; border: 1px solid #444; background: #222; }
 
-        /* MODAL STYLES */
+        /* MODAL */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 10000; 
-            left: 0; top: 0;
-            width: 100%; height: 100%;
+            display: none; position: fixed; z-index: 10000; 
+            left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
+            justify-content: center; align-items: center;
         }
 
         .modal-content {
             background: var(--bg-color);
             border: 2px solid var(--hacker-red);
-            padding: 30px;
-            width: 80%;
-            max-width: 600px;
-            position: relative;
-            box-shadow: 0 0 30px var(--hacker-red);
+            padding: 30px; width: 90%; max-width: 600px;
+            position: relative; box-shadow: 0 0 30px var(--hacker-red);
         }
 
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 20px;
-            color: var(--hacker-red);
-            font-size: 30px;
-            cursor: pointer;
-        }
+        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--hacker-red); font-size: 30px; cursor: pointer; }
 
-        #modal-img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid #333;
-            margin-bottom: 20px;
+        #modal-img { width: 100%; max-height: 250px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--hacker-red); }
+
+        /* Back to Top */
+        #backToTop {
+            display: none; position: fixed; bottom: 20px; right: 20px; z-index: 999;
+            background: var(--bg-color); color: var(--hacker-red); border: 1px solid var(--hacker-red);
+            padding: 10px; cursor: pointer; font-weight: bold;
         }
 
         .red-text { color: var(--hacker-red); }
+        a { color: var(--terminal-green); text-decoration: none; }
+        .contact-item { border: 1px solid var(--terminal-green); padding: 10px; display: inline-block; margin: 10px 10px 0 0; }
     </style>
 </head>
 <body>
@@ -168,95 +149,77 @@
 <div class="container">
     <header>
         <div class="glitch-container">
-            <img src="profile.png" alt="Dulshan" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=Dulshan'">
-            <img src="profile.png" class="glitch-layer glitch-layer-1" aria-hidden="true">
-            <img src="profile.png" class="glitch-layer glitch-layer-2" aria-hidden="true">
+            <img src="profile.jpg" alt="Dulshan" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=Check+Filename'">
+            <img src="profile.jpg" class="glitch-layer glitch-layer-1" aria-hidden="true">
+            <img src="profile.jpg" class="glitch-layer glitch-layer-2" aria-hidden="true">
         </div>
-        
         <h1>Hello, I'm <span class="red-text">Dulshan</span></h1>
         <p>ICT Undergraduate | Networking & Cloud Enthusiast</p>
     </header>
 
     <section id="projects">
-        <h2>> Featured_Projects</h2>
+        <h2 class="red-text">> Featured_Projects</h2>
         <div class="project-grid">
-            <div class="project-card" onclick="openModal('Bank Management System', 'A secure C-based system featuring file handling for data persistence and multi-user account management.', 'project1.jpg')">
-                <img src="project1.jpg" alt="Bank" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Bank+System'">
+            
+            <div class="project-card" onclick="openModal('Bank Management System', 'C-based system with file handling for secure data management.', 'project1.png')">
+                <img src="project1.jpg" alt="Project 1" class="project-img" onerror="this.src='https://via.placeholder.com/300x180?text=Image+Missing'">
                 <h3 class="red-text">Bank Management System</h3>
                 <p>Click for details...</p>
             </div>
 
-            <div class="project-card" onclick="openModal('Java Applications', 'Developed various OOP-based tools including simple GUI calculators and database connectors.', 'project2.jpg')">
-                <img src="project2.jpg" alt="Java" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Java+App'">
+            <div class="project-card" onclick="openModal('Java Applications', 'OOP focused applications with GUI elements.', 'project2.png')">
+                <img src="project2.jpg" alt="Project 2" class="project-img" onerror="this.src='https://via.placeholder.com/300x180?text=Image+Missing'">
                 <h3 class="red-text">Java Applications</h3>
                 <p>Click for details...</p>
             </div>
 
-            <div class="project-card" onclick="openModal('Networking Learning', 'Extensive labs on Cisco Packet Tracer involving VLANs, OSPF routing, and IPv4 subnetting.', 'project3.jpg')">
-                <img src="project3.jpg" alt="Network" class="project-img" onerror="this.src='https://via.placeholder.com/300x150?text=Network+Labs'">
-                <h3 class="red-text">Networking Learning</h3>
-                <p>Click for details...</p>
-            </div>
         </div>
     </section>
 
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Preview">
-            <h2 id="modal-title" class="red-text"></h2>
-            <p id="modal-desc" style="color: #ccc;"></p>
-        </div>
+    <section id="contact">
+        <h2 class="red-text">> Connection_Portal</h2>
+        <div class="contact-item">GITHUB: <a href="https://github.com/dulshantd" target="_blank">dulshantd</a></div>
+        <div class="contact-item">LINKEDIN: <a href="https://linkedin.com/in/dulshan-dissanayaka" target="_blank">Connect</a></div>
+    </section>
+</div>
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img id="modal-img" src="" alt="Project Detail">
+        <h2 id="modal-title" class="red-text"></h2>
+        <p id="modal-desc"></p>
     </div>
 </div>
 
+<button onclick="scrollToTop()" id="backToTop">^ STACK_TOP</button>
+
 <script>
-    // Get the button
-let mybutton = document.getElementById("backToTop");
-
-// When the user scrolls down 300px from the top, show the button
-window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-};
-
-// When the user clicks, scroll to the top smoothly
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-    function openModal(title, desc, imgPath) {
+    function openModal(title, desc, img) {
         document.getElementById('modal-title').innerText = title;
         document.getElementById('modal-desc').innerText = desc;
-        document.getElementById('modal-img').src = imgPath;
+        document.getElementById('modal-img').src = img;
         document.getElementById('projectModal').style.display = 'flex';
     }
 
-    function closeModal() {
-        document.getElementById('projectModal').style.display = 'none';
-    }
+    function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
 
-    window.onclick = function(event) {
-        let modal = document.getElementById('projectModal');
-        if (event.target == modal) closeModal();
-    }
+    window.onclick = function(e) { if (e.target.className === 'modal') closeModal(); }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-            }
-        });
-    }, { threshold: 0.1 });
+    window.onscroll = function() {
+        let btn = document.getElementById("backToTop");
+        if (document.documentElement.scrollTop > 300) btn.style.display = "block";
+        else btn.style.display = "none";
+    };
 
-    document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+    function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('appear'); });
+    }, {threshold: 0.1});
+
+    document.querySelectorAll('.project-card').forEach(card => obs.observe(card));
 </script>
 
-<button onclick="scrollToTop()" id="backToTop" title="Go to top">^ STACK_TOP</button>
 </body>
 </html>
